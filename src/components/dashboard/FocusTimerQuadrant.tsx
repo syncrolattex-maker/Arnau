@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { SubjectInfo, StudySessionRecord } from '../../types';
-import { SUBJECTS } from '../../utils/storage';
-import { Play, Pause, Square, Shield, ShieldAlert, Volume2, VolumeX } from 'lucide-react';
+import { getStoredSubjects } from '../../utils/storage';
+import { Play, Pause, Square, Shield, ShieldAlert, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface FocusTimerQuadrantProps {
@@ -15,7 +15,8 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
   onSessionComplete,
   onCoinsEarned,
 }) => {
-  const [selectedSubject, setSelectedSubject] = useState<SubjectInfo>(SUBJECTS[0]);
+  const subjects = getStoredSubjects();
+  const [selectedSubject, setSelectedSubject] = useState<SubjectInfo>(subjects[0]);
   const [durationMinutes, setDurationMinutes] = useState<number>(25);
   const [secondsRemaining, setSecondsRemaining] = useState<number>(25 * 60);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -201,14 +202,14 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
             }}
           />
           <h2 style={{ fontSize: '22px', margin: 0 }}>
-            1. Enfoque Inmediato & Bloqueo
+            1. Enfocament Immediat & Bloqueig
           </h2>
         </div>
 
         {/* Audio Cue Button */}
         <button
           onClick={() => setSoundEnabled(!soundEnabled)}
-          title={soundEnabled ? 'Silenciar avisos' : 'Activar avisos sonoros'}
+          title={soundEnabled ? 'Silenciar avisos' : 'Activar avisos sonors'}
           style={{
             background: 'none',
             border: 'none',
@@ -228,14 +229,14 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
           className="font-mono"
           style={{ fontSize: '12px', color: '#555566' }}
         >
-          SELECCIONA ASIGNATURA (ARRANQUE DIRECTO &lt; 5s):
+          SELECCIONA ASSIGNATURA (ARRANCADA DIRECTA &lt; 5s):
         </label>
         <div style={{ position: 'relative' }}>
           <select
             id="subject-select"
             value={selectedSubject.id}
             onChange={(e) => {
-              const sub = SUBJECTS.find((s) => s.id === e.target.value);
+              const sub = subjects.find((s) => s.id === e.target.value);
               if (sub) setSelectedSubject(sub);
             }}
             disabled={isRunning}
@@ -255,7 +256,7 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
               WebkitAppearance: 'none',
             }}
           >
-            {SUBJECTS.map((sub) => (
+            {subjects.map((sub) => (
               <option key={sub.id} value={sub.id}>
                 {sub.icon} {sub.name} ({sub.code})
               </option>
@@ -274,6 +275,35 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
           >
             ▼
           </div>
+        </div>
+
+        {/* 1-Click Aules Direct Link Hub */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '2px 4px' }}>
+          <span style={{ fontSize: '12px', color: '#6e6e80' }}>
+            Accés directe a l'aula virtual:
+          </span>
+          <a
+            href={selectedSubject.aulesUrl || 'https://aules.edu.gva.es/eso46/my/'}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              fontSize: '12px',
+              color: selectedSubject.color,
+              fontWeight: 600,
+              textDecoration: 'none',
+              backgroundColor: selectedSubject.color + '15',
+              padding: '3px 8px',
+              borderRadius: '4px',
+              transition: 'opacity 0.2s',
+            }}
+            title={`Obrir el curs de ${selectedSubject.name} a Aules`}
+          >
+            <span>Obrir en Aules</span>
+            <ExternalLink size={12} />
+          </a>
         </div>
       </div>
 
@@ -351,7 +381,7 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
                 color: '#555566',
               }}
             >
-              {timeFormatted} restantes
+              {timeFormatted} restants
             </div>
           </div>
         ) : (
@@ -377,9 +407,9 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
             >
               {isRunning
                 ? isPaused
-                  ? '⏸️ Sesión pausada'
-                  : `Enfocado en ${selectedSubject.name}`
-                : 'Listo para arrancar'}
+                  ? '⏸️ Sessió pausada'
+                  : `Enfocat en ${selectedSubject.name}`
+                : 'A punt per a començar'}
             </div>
           </div>
         )}
@@ -394,9 +424,9 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
             }}
           >
             {[
-              { label: '15m Express', val: 15 },
+              { label: '15m Exprés', val: 15 },
               { label: '25m Pomodoro', val: 25 },
-              { label: '45m Bloque ESO', val: 45 },
+              { label: '45m Bloc ESO', val: 45 },
             ].map((p) => (
               <button
                 key={p.val}
@@ -430,9 +460,9 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
             <ShieldAlert size={18} color="#c0392b" />
           )}
           <span style={{ fontSize: '14px', color: 'var(--color-ink-black)' }}>
-            Bloqueo de Redes (TikTok/Insta/YT):{' '}
+            Bloqueig de Xarxes (TikTok/Insta/YT):{' '}
             <strong style={{ color: blockerActive ? '#27ae60' : '#c0392b' }}>
-              {blockerActive ? 'ACTIVO (Límite 1 min)' : 'INACTIVO'}
+              {blockerActive ? 'ACTIU (Límit 1 min)' : 'INACTIU'}
             </strong>
           </span>
         </div>
@@ -463,7 +493,7 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
             style={{ width: '100%', fontSize: '18px' }}
           >
             <Play size={20} fill="#ffffff" />
-            <span>Iniciar Sesión de Estudio →</span>
+            <span>Començar Sessió d'Estudi →</span>
           </button>
         ) : (
           <>
@@ -474,7 +504,7 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
                 style={{ flex: 1, fontSize: '17px' }}
               >
                 <Play size={18} fill="#ffffff" />
-                <span>Reanudar</span>
+                <span>Reprendre</span>
               </button>
             ) : (
               <button
@@ -506,7 +536,7 @@ export const FocusTimerQuadrant: React.FC<FocusTimerQuadrantProps> = ({
               }}
             >
               <Square size={16} fill="#ff4141" />
-              <span>Finalizar</span>
+              <span>Finalitzar</span>
             </button>
           </>
         )}

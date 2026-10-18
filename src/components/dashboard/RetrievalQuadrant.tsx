@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import type { Flashcard, ReviewRating } from '../../types';
 import { calculateSM2 } from '../../utils/sm2';
-import { Brain, RotateCw, AlertTriangle } from 'lucide-react';
+import { Brain, RotateCw, AlertTriangle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface RetrievalQuadrantProps {
   flashcards: Flashcard[];
   onUpdateFlashcard: (updatedCard: Flashcard) => void;
   onCoinsEarned: (coins: number) => void;
+  onOpenAulesImport?: () => void;
 }
 
 export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
   flashcards,
   onUpdateFlashcard,
   onCoinsEarned,
+  onOpenAulesImport,
 }) => {
   const [isReviewing, setIsReviewing] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -64,11 +66,11 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
     const ratingLabels: Record<ReviewRating, string> = {
       0: 'Repetir (q=0)',
       3: 'Difícil (q=3)',
-      4: 'Bien (q=4)',
-      5: 'Fácil (q=5)',
+      4: 'Bé (q=4)',
+      5: 'Fàcil (q=5)',
     };
     setLastCalculationLog(
-      `SM-2: ${ratingLabels[rating]} → Nuevo EF: ${result.newEaseFactor} | Próximo repaso en ${result.newInterval} día(s)`
+      `SM-2: ${ratingLabels[rating]} → Nou EF: ${result.newEaseFactor} | Pròxim repàs en ${result.newInterval} dia(es)`
     );
 
     // If rated Fácil or Bien, award +2 bonus coins
@@ -114,12 +116,37 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
             }}
           />
           <h2 style={{ fontSize: '22px', margin: 0 }}>
-            3. Memorización & Recuperación (Anki SM-2)
+            3. Memorització & Recuperació Activa (Anki SM-2)
           </h2>
         </div>
 
-        <div className="tag-mono" style={{ backgroundColor: '#e1edff', color: 'var(--color-electric-iris)' }}>
-          {accuracyPercent}% Aciertos
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {onOpenAulesImport && (
+            <button
+              onClick={onOpenAulesImport}
+              title="Importar qüestionaris o preguntes d'Aules"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+                backgroundColor: '#fef3c7',
+                color: '#b45309',
+                border: '1px solid #fde68a',
+                borderRadius: 'var(--radius-tags)',
+                padding: '4px 10px',
+                fontSize: '12px',
+                cursor: 'pointer',
+                fontWeight: 500,
+              }}
+            >
+              <Sparkles size={13} />
+              <span>Importar d'Aules</span>
+            </button>
+          )}
+
+          <div className="tag-mono" style={{ backgroundColor: '#e1edff', color: 'var(--color-electric-iris)' }}>
+            {accuracyPercent}% Encerts
+          </div>
         </div>
       </div>
 
@@ -139,7 +166,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
           >
             <div>
               <div style={{ fontSize: '13px', color: '#6e6e80', fontFamily: 'var(--font-martian-mono)' }}>
-                FICHAS PROGRAMADAS PARA HOY:
+                FITXES PROGRAMADES PER A HUI:
               </div>
               <div
                 style={{
@@ -156,7 +183,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
 
             <div style={{ textAlign: 'right' }}>
               <div style={{ fontSize: '12px', color: '#6e6e80' }}>
-                Algoritmo Activo:
+                Algorisme Actiu:
               </div>
               <div
                 className="font-mono"
@@ -188,9 +215,9 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
           >
             <AlertTriangle size={18} color="#d48806" style={{ flexShrink: 0, marginTop: '2px' }} />
             <div>
-              <strong>Principio de Codificación Activa:</strong> Prohibido usar IA para crear tarjetas
-              automáticas. El 50% de la fijación de memoria ocurre redactando tú mismo la pregunta y la
-              síntesis.
+              <strong>Principi de Codificació Activa:</strong> Prohibit utilitzar IA per a crear fitxes
+              automàtiques sense esforç. El 50% de la fixació de memòria es produeix redactant tu mateix la pregunta i la
+              síntesi.
             </div>
           </div>
 
@@ -215,31 +242,64 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
             style={{ width: '100%', fontSize: '18px', marginTop: '4px' }}
           >
             <Brain size={20} />
-            <span>Comenzar Repaso de Tarjetas →</span>
+            <span>Començar Repàs de Fitxes →</span>
           </button>
         </div>
       ) : (
         /* Active Card Reviewer */
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {/* Progress Bar & Counter */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
             <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-              TARJETA {currentIndex + 1} DE {pendingCards.length}
+              FITXA {currentIndex + 1} DE {pendingCards.length}
             </span>
-            {currentCard && (
-              <span
-                style={{
-                  fontSize: '12px',
-                  fontFamily: 'var(--font-martian-mono)',
-                  padding: '2px 8px',
-                  borderRadius: '4px',
-                  backgroundColor: '#e1edff',
-                  color: 'var(--color-ink-black)',
-                }}
-              >
-                {currentCard.subjectName}
-              </span>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {currentCard?.topicTitle && (
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontFamily: 'var(--font-haas-grot-text)',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    backgroundColor: '#fef3c7',
+                    color: '#92400e',
+                    border: '1px solid #fde68a',
+                  }}
+                >
+                  📖 {currentCard.topicTitle}
+                </span>
+              )}
+              {currentCard?.sourceAules && (
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontFamily: 'var(--font-martian-mono)',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    backgroundColor: '#e0e7ff',
+                    color: '#3730a3',
+                    fontWeight: 600,
+                  }}
+                  title="Fitxa generada a partir del temari oficial d'Aules GVA"
+                >
+                  AULES GVA
+                </span>
+              )}
+              {currentCard && (
+                <span
+                  style={{
+                    fontSize: '12px',
+                    fontFamily: 'var(--font-martian-mono)',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    backgroundColor: '#e1edff',
+                    color: 'var(--color-ink-black)',
+                  }}
+                >
+                  {currentCard.subjectName}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Flashcard Box */}
@@ -262,7 +322,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                 className="font-mono"
                 style={{ fontSize: '11px', color: '#888899', marginBottom: '6px' }}
               >
-                PREGUNTA / CONCEPTO CLAVE:
+                PREGUNTA / CONCEPTE CLAU:
               </div>
               <div
                 style={{
@@ -289,7 +349,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                   className="font-mono"
                   style={{ fontSize: '11px', color: '#16ab59' }}
                 >
-                  RESPUESTA CONSOLIDADA:
+                  RESPOSTA CONSOLIDADA:
                 </div>
                 <div style={{ fontSize: '15px', color: '#222233', lineHeight: 1.4 }}>
                   {currentCard?.answer}
@@ -305,7 +365,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                       marginTop: '4px',
                     }}
                   >
-                    💡 Clave Cornell: {currentCard.cornellKeyIdea}
+                    💡 Clau Cornell: {currentCard.cornellKeyIdea}
                   </div>
                 )}
               </div>
@@ -317,7 +377,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                   style={{ fontSize: '16px', padding: '10px 20px' }}
                 >
                   <RotateCw size={16} />
-                  <span>Mostrar Respuesta</span>
+                  <span>Mostrar Resposta</span>
                 </button>
               </div>
             )}
@@ -330,7 +390,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                 className="font-mono"
                 style={{ fontSize: '11px', color: '#555566', textAlign: 'center' }}
               >
-                EVALÚA TU ESFUERZO DE RECUPERACIÓN (ALGORITMO SM-2):
+                AVALUA EL TEU ESFORÇ DE RECUPERACIÓ (ALGORISME SM-2):
               </div>
               <div
                 style={{
@@ -354,7 +414,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                   }}
                 >
                   Repetir (0)
-                  <span style={{ display: 'block', fontSize: '10px', opacity: 0.8 }}>1 día</span>
+                  <span style={{ display: 'block', fontSize: '10px', opacity: 0.8 }}>1 dia</span>
                 </button>
 
                 <button
@@ -372,7 +432,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                   }}
                 >
                   Difícil (3)
-                  <span style={{ display: 'block', fontSize: '10px', opacity: 0.8 }}>Ajuste EF</span>
+                  <span style={{ display: 'block', fontSize: '10px', opacity: 0.8 }}>Ajust EF</span>
                 </button>
 
                 <button
@@ -389,7 +449,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                     fontFamily: 'var(--font-haas-grot-text)',
                   }}
                 >
-                  Bien (4)
+                  Bé (4)
                   <span style={{ display: 'block', fontSize: '10px', opacity: 0.8 }}>Normal</span>
                 </button>
 
@@ -407,7 +467,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                     fontFamily: 'var(--font-haas-grot-text)',
                   }}
                 >
-                  Fácil (5)
+                  Fàcil (5)
                   <span style={{ display: 'block', fontSize: '10px', opacity: 0.8 }}>+Bonus</span>
                 </button>
               </div>
@@ -419,7 +479,7 @@ export const RetrievalQuadrant: React.FC<RetrievalQuadrantProps> = ({
                 className="btn-ghost"
                 style={{ fontSize: '14px' }}
               >
-                Pausar repaso y volver
+                Pausar repàs i tornar
               </button>
             </div>
           )}

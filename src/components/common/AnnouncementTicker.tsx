@@ -2,20 +2,20 @@ import React from 'react';
 
 export const AnnouncementTicker: React.FC = () => {
   const tickerItems = [
-    '✦ FLUJO DIGITAL 2º DE LA ESO',
-    'ARRANQUE DE ESTUDIO EN MENOS DE 5 SEGUNDOS',
-    'LA REGLA DE LAS 3 QUE SE QUEDAN',
-    'ALGORITMO SM-2 ANKI ACTIVO',
-    'BLOQUEO AUTOMÁTICO DE TIKTOK E INSTAGRAM (LÍMITE 1 MIN)',
-    '1 MINUTO ENFOCADO = 1 MONEDA VIRTUAL',
-    'ISLA COLECTIVA NIVEL 4 EN CRECIMIENTO',
-    'MODO TDAH: DISCO VISUAL DISPONIBLE',
+    '✦ FLUX DIGITAL 2n D\'ESO',
+    'ARRANCADA D\'ESTUDI EN MENYS DE 5 SEGONS',
+    'LA REGLA DE LES 3 QUE ES QUEDEN',
+    'ALGORISME SM-2 ANKI ACTIU',
+    'BLOQUEIG AUTOMÀTIC DE TIKTOK I INSTAGRAM (LÍMIT 1 MIN)',
+    '1 MINUT ENFOCAT = 1 MONEDA VIRTUAL',
+    'ILLA COL·LECTIVA NIVELL 4 EN CREIXEMENT',
+    'MODE TDAH: DISC VISUAL DISPONIBLE',
   ];
 
   const fullText = tickerItems.join(' • ') + ' • ' + tickerItems.join(' • ');
 
   return (
-    <div className="ticker-bar" role="region" aria-label="Anuncios de Flujo de Trabajo">
+    <div className="ticker-bar" role="region" aria-label="Avisos de Flux de Treball">
       <div className="ticker-fade" />
       <div className="ticker-content font-mono">
         <span>{fullText}</span>

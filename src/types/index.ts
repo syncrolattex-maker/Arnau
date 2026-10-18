@@ -21,6 +21,24 @@ export interface StudySessionRecord extends StudySessionPayload {
   created_at: string;
 }
 
+export interface TopicMaterial {
+  id: string;
+  title: string;
+  type: 'aules' | 'book' | 'pdf' | 'notes';
+  url: string;
+}
+
+export interface Topic {
+  id: string;
+  subjectId: string;
+  unitNumber: number;
+  title: string;
+  summary?: string;
+  materials: TopicMaterial[];
+  status: 'pending' | 'in_progress' | 'mastered';
+  flashcardCount: number;
+}
+
 export interface SubjectInfo {
   id: string;
   name: string;
@@ -29,6 +47,8 @@ export interface SubjectInfo {
   category: 'stem' | 'humanities' | 'language';
   icon: string;
   recommendedMinimumRatio: number; // e.g., 0.10 (10%)
+  aulesUrl?: string;
+  topics?: Topic[];
 }
 
 export interface DailyTask {
@@ -54,6 +74,9 @@ export interface Flashcard {
   id: string;
   subjectId: string;
   subjectName: string;
+  topicId?: string;
+  topicTitle?: string;
+  sourceAules?: boolean;
   question: string;
   answer: string;
   cornellKeyIdea?: string;

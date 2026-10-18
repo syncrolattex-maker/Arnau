@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import type { DailyTask, ExamCountdown } from '../../types';
 import { SUBJECTS } from '../../utils/storage';
-import { CheckCircle2, Circle, Mic, Plus } from 'lucide-react';
+import { CheckCircle2, Circle, Mic, Plus, Calendar } from 'lucide-react';
 
 interface PlanningQuadrantProps {
   tasks: DailyTask[];
   exams: ExamCountdown[];
   onToggleTask: (taskId: string) => void;
   onAddTask: (task: Omit<DailyTask, 'id'>) => void;
+  onOpenAulesSync?: () => void;
 }
 
 export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
@@ -15,6 +16,7 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
   exams,
   onToggleTask,
   onAddTask,
+  onOpenAulesSync,
 }) => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newTitle, setNewTitle] = useState('');
@@ -26,7 +28,7 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
     e.preventDefault();
     if (!newTitle.trim()) return;
     if (tasks.length >= 5) {
-      alert('Regla pedagógica: Máximo 5 tareas críticas diarias para evitar sobrecarga decisional.');
+      alert('Regla pedagògica: Màxim 5 tasques crítiques diàries per a evitar sobrecàrrega decisional.');
       return;
     }
     onAddTask({
@@ -45,10 +47,10 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
     // Simulate Siri / Google Assistant voice recognition
     setTimeout(() => {
       const voiceTemplates = [
-        { text: 'Estudiar 20 min leyes de los gases en Física', sub: 'FYQ_2ESO' },
-        { text: 'Resolver 3 problemas de ecuaciones en Matemáticas', sub: 'MAT_2ESO' },
-        { text: 'Repasar esquema de la célula eucariota en Biología', sub: 'BIO_2ESO' },
-        { text: 'Repaso vocabulario unit 4 de Inglés', sub: 'ING_2ESO' },
+        { text: 'Estudiar 20 min el mètode científic en Física i Química', sub: 'FYQ_2ESO' },
+        { text: 'Resoldre 3 problemes de potències en Matemàtiques', sub: 'MAT_2ESO' },
+        { text: 'Repassar la fragmentació del món antic en Història', sub: 'HIS_2ESO' },
+        { text: 'Fitxa d\'accentuació diacrítica en Valencià', sub: 'VAL_2ESO' },
       ];
       const randomT = voiceTemplates[Math.floor(Math.random() * voiceTemplates.length)];
       if (tasks.length < 5) {
@@ -80,37 +82,62 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
             }}
           />
           <h2 style={{ fontSize: '22px', margin: 0 }}>
-            2. Planificación & D-Day Exámenes
+            2. Planificació & D-Day Exàmens
           </h2>
         </div>
 
-        {/* Voice Trigger (Siri / Asistente) */}
-        <button
-          onClick={handleSimulateVoiceInput}
-          title="Captura rápida por comando de voz (Siri / Asistente de Google)"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            backgroundColor: isVoiceListening ? '#ff4141' : '#f0f6ff',
-            color: isVoiceListening ? '#ffffff' : 'var(--color-electric-iris)',
-            border: '1px solid var(--color-frost-blue)',
-            borderRadius: 'var(--radius-tags)',
-            padding: '6px 12px',
-            fontSize: '13px',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-        >
-          <Mic size={15} />
-          <span>{isVoiceListening ? 'Escuchando...' : 'Entrada por Voz'}</span>
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {onOpenAulesSync && (
+            <button
+              onClick={onOpenAulesSync}
+              title="Sincronitzar proves i tasques des d'Aules GVA (.ics / enllaç)"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                backgroundColor: '#f0fdf4',
+                color: '#15803d',
+                border: '1px solid #bbf7d0',
+                borderRadius: 'var(--radius-tags)',
+                padding: '6px 12px',
+                fontSize: '13px',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <Calendar size={15} />
+              <span>Sincronitzar Aules</span>
+            </button>
+          )}
+
+          {/* Voice Trigger (Siri / Asistente) */}
+          <button
+            onClick={handleSimulateVoiceInput}
+            title="Captura ràpida per comandament de veu (Siri / Assistent de Google)"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              backgroundColor: isVoiceListening ? '#ff4141' : '#f0f6ff',
+              color: isVoiceListening ? '#ffffff' : 'var(--color-electric-iris)',
+              border: '1px solid var(--color-frost-blue)',
+              borderRadius: 'var(--radius-tags)',
+              padding: '6px 12px',
+              fontSize: '13px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            <Mic size={15} />
+            <span>{isVoiceListening ? 'Escoltant...' : 'Entrada per Veu'}</span>
+          </button>
+        </div>
       </div>
 
       {/* D-Day Countdown Cards Row */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <div className="font-mono" style={{ fontSize: '12px', color: '#555566' }}>
-          EVALUACIONES INMINENTES (D-DAY):
+          AVALUACIONS I PROVES INMINENTS (D-DAY):
         </div>
 
         <div
@@ -183,7 +210,7 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div className="font-mono" style={{ fontSize: '12px', color: '#555566' }}>
-            TAREAS CRÍTICAS DEL DÍA ({completedCount}/{tasks.length} — MÁX 5):
+            TASQUES CRÍTIQUES DEL DIA ({completedCount}/{tasks.length} — MÀX 5):
           </div>
           {tasks.length < 5 && !showAddForm && (
             <button
@@ -201,7 +228,7 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
               }}
             >
               <Plus size={14} />
-              <span>Añadir tarea</span>
+              <span>Afegir tasca</span>
             </button>
           )}
         </div>
@@ -307,7 +334,7 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
           >
             <input
               type="text"
-              placeholder="Ej. Resumen Cornell de Historia pág. 45"
+              placeholder="Ex. Resum Cornell d'Història pàg. 45"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
               className="superhi-input"
@@ -360,7 +387,7 @@ export const PlanningQuadrant: React.FC<PlanningQuadrantProps> = ({
                   color: '#666677',
                 }}
               >
-                Cancelar
+                Cancel·lar
               </button>
             </div>
           </form>

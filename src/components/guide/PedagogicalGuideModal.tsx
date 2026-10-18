@@ -16,22 +16,22 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
           style={{ padding: '8px 12px', fontSize: '15px' }}
         >
           <ArrowLeft size={16} />
-          <span>Volver al Dashboard</span>
+          <span>Tornar al Tauler</span>
         </button>
 
         <div className="tag-mono" style={{ backgroundColor: '#ffffff', border: '1px solid #111118' }}>
-          MARCO ESTRATÉGICO & PEDAGÓGICO DE 2º DE LA ESO
+          MARC ESTRATÈGIC & PEDAGÒGIC DE 2n D'ESO
         </div>
       </div>
 
       {/* Hero Title */}
       <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto' }}>
         <h1 style={{ fontSize: '42px', letterSpacing: '-1.5px', marginBottom: '8px' }}>
-          Especificación Arquitectónica y Diseño de Flujo de Trabajo Digital
+          Especificació Arquitectònica i Disseny de Flux de Treball Digital
         </h1>
         <p style={{ fontSize: '18px', color: '#555566' }}>
-          Guía de implementación de entornos digitales libres de fricción para alumnos de 13 a 14 años.
-          Fundamentado en psicología cognitiva y evidencia empírica.
+          Guia d'implementació d'entorns digitals lliures de fricció per a alumnes de 13 a 14 anys.
+          Fonamentat en psicologia cognitiva i evidència empírica.
         </p>
       </div>
 
@@ -43,28 +43,28 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
           </div>
           <div>
             <h2 style={{ fontSize: '24px', margin: 0 }}>
-              1. Diagnóstico Pedagógico y Riesgos del "Teatro de Productividad"
+              1. Diagnòstic Pedagògic i Riscos del "Teatre de Productivitat"
             </h2>
             <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-              Franja etaria 13-14 años (2º ESO) · Desarrollo del córtex prefrontal
+              Franja d'edat 13-14 anys (2n ESO) · Desenvolupament del còrtex prefrontal
             </span>
           </div>
         </div>
 
         <div style={{ fontSize: '16px', lineHeight: 1.6, color: '#222233', display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <p>
-            Durante 2º de la ESO, el alumnado experimenta un salto cualitativo en la exigencia curricular:
-            mayor nivel de abstracción en materias STEM (Física y Química, Matemáticas) y un volumen
-            considerable de carga conceptual en asignaturas de memoria y análisis (Biología y Geología,
-            Geografía e Historia, Lengua).
+            Durant 2n d'ESO, l'alumnat experimenta un salt qualitatiu en l'exigència curricular:
+            major nivell d'abstracció en matèries STEM (Física i Química, Matemàtiques) i un volum
+            considerable de càrrega conceptual en assignatures de memòria i anàlisi (Geografia i Història,
+            Valencià, Castellà).
           </p>
 
           <p>
-            <strong>La patología del "Teatro de Productividad":</strong> Al auditar el dispositivo de un alumno
-            medio se detectan hasta 14 aplicaciones distintas (Notion, Quizlet, Habitica, Forest, Anki, Photomath,
-            ChatGPT, Brainly, etc.). El estudiante invierte horas en formatear bases de datos, personalizar iconos
-            y navegar entre pestañas, generando la ilusión de estar estudiando sin que se produzca codificación
-            cognitiva ni fijación en la memoria a largo plazo.
+            <strong>La patologia del "Teatre de Productivitat":</strong> En auditar el dispositiu d'un alumne
+            mitjà es detecten fins a 14 aplicacions diferents (Notion, Quizlet, Habitica, Forest, Anki, Photomath,
+            ChatGPT, Brainly, etc.). L'estudiant inverteix hores a formatar bases de dades, personalitzar icones
+            i navegar entre pestanyes, generant la il·lusió d'estar estudiant sense que es produïsca codificació
+            cognitiva ni fixació a la memòria a llarg termini.
           </p>
         </div>
 
@@ -83,11 +83,11 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
         >
           <Smartphone size={24} color="#d48806" style={{ flexShrink: 0, marginTop: '2px' }} />
           <div style={{ fontSize: '14px', lineHeight: 1.5, color: '#533f03' }}>
-            <strong>Hallazgo de la Universidad de Texas (Brain Drain Effect):</strong> La mera presencia física
-            del smartphone sobre la mesa de estudio —incluso apagado, boca abajo o en silencio— reduce
-            significativamente la capacidad de la memoria de trabajo. El cerebro del adolescente agota recursos
-            atencionales de forma subconsciente inhibiendo el impulso de consultar notificaciones. Por tanto, el
-            móvil debe salir físicamente del área de estudio o aislarse en límites infranqueables de 1 minuto.
+            <strong>Troballa de la Universitat de Texas (Brain Drain Effect):</strong> La mera presència física
+            de l'smartphone sobre la taula d'estudi —fins i tot apagat, de bocaterrosa o en silenci— redueix
+            significativament la capacitat de la memòria de treball. El cervell de l'adolescent esgota recursos
+            atencionals de forma subconscient inhibint l'impuls de consultar notificacions. Per tant, el
+            mòbil ha d'eixir físicament de l'àrea d'estudi o aïllar-se en límits infranquejables d'1 minut.
           </div>
         </div>
       </div>
@@ -100,10 +100,10 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
           </div>
           <div>
             <h2 style={{ fontSize: '24px', margin: 0 }}>
-              2. La Regla de las "Tres que se Quedan" & Matriz de Herramientas
+              2. La Regla de les "Tres que es Queden" & Matriu d'Eines
             </h2>
             <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-              Consolidación e invisibilidad operativa
+              Consolidació i invisibilitat operativa
             </span>
           </div>
         </div>
@@ -120,88 +120,88 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
             <thead>
               <tr style={{ backgroundColor: 'var(--color-chalk-blue)', textAlign: 'left' }}>
                 <th style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontFamily: 'var(--font-martian-mono)', fontSize: '12px' }}>
-                  CATEGORÍA
+                  CATEGORIA
                 </th>
                 <th style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontFamily: 'var(--font-martian-mono)', fontSize: '12px' }}>
-                  HERRAMIENTA
+                  EINA
                 </th>
                 <th style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontFamily: 'var(--font-martian-mono)', fontSize: '12px' }}>
-                  MECANISMO COGNITIVO
+                  MECANISME COGNITIU
                 </th>
                 <th style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontFamily: 'var(--font-martian-mono)', fontSize: '12px', color: '#ff4141' }}>
-                  RIESGO A EVITAR
+                  RISC A EVITAR
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontWeight: 600 }}>
-                  Enfoque y Tiempo
+                  Enfocament i Temps
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
                   YPT / Forest / Time Timer
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
-                  Reducción de carga atencional mediante intervalos estructurados y bloqueo activo de apps.
+                  Reducció de càrrega atencional mitjançant intervals estructurats i bloqueig actiu d'apps.
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', color: '#ff4141' }}>
-                  Perder horas diseñando avatares o mecánicas complejas en Habitica.
+                  Perdre hores dissenyant avatars o mecàniques complexes en Habitica.
                 </td>
               </tr>
               <tr style={{ backgroundColor: '#fafcff' }}>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontWeight: 600 }}>
-                  Toma de Notas
+                  Presa de Notes
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
                   GoodNotes / Notability (Cornell)
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
-                  Codificación activa mediante grafomotricidad digital manuscrita y estructuración sintética Cornell.
+                  Codificació activa mitjançant grafomotricitat digital manuscrita i estructuració sintètica Cornell.
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', color: '#ff4141' }}>
-                  Configurar interminables bases de datos y propiedades cosméticas en Notion.
+                  Configurar interminables bases de dades i propietats cosmètiques en Notion.
                 </td>
               </tr>
               <tr>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontWeight: 600 }}>
-                  Memorización
+                  Memorització
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
-                  Anki (Algoritmo SM-2)
+                  Anki (Algorisme SM-2)
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
-                  Repetición espaciada y recuperación activa matemática en el momento óptimo de la curva del olvido.
+                  Repetició espaiada i recuperació activa matemàtica en el moment òptim de la corba de l'oblit.
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', color: '#ff4141' }}>
-                  Usar Quizlet AI para autogenerar tarjetas: se anula el 50% de la codificación inicial.
+                  Utilitzar Quizlet AI per a autogenerar targetes: s'anul·la el 50% de la codificació inicial.
                 </td>
               </tr>
               <tr style={{ backgroundColor: '#fafcff' }}>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontWeight: 600 }}>
-                  Planificación
+                  Planificació
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
                   Apple Reminders / Google Cal
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
-                  Externalización inmediata de la memoria de trabajo con activación por voz y cero fricción.
+                  Externalització immediata de la memòria de treball amb activació per veu i zero fricció.
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', color: '#ff4141' }}>
-                  Gestores de tareas sobrecargados que se abandonan tras cambiar la primera fecha.
+                  Gestors de tasques sobrecarregats que s'abandonen després de canviar la primera data.
                 </td>
               </tr>
               <tr>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', fontWeight: 600 }}>
-                  Apoyo con IA
+                  Suport amb IA
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
                   NotebookLM / Khanmigo
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)' }}>
-                  Tutoría socrática guiada paso a paso que verifica la comprensión conceptual sin dar respuestas directas.
+                  Tutoria socràtica guiada pas a pas que verifica la comprensió conceptual sense donar respostes directes.
                 </td>
                 <td style={{ padding: '12px', border: '1px solid var(--color-frost-blue)', color: '#ff4141' }}>
-                  Delegar la redacción en ChatGPT o Claude, suprimiendo el pensamiento del estudiante.
+                  Delegar la redacció a ChatGPT o Claude, suprimint el pensament de l'estudiant.
                 </td>
               </tr>
             </tbody>
@@ -217,10 +217,10 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
           </div>
           <div>
             <h2 style={{ fontSize: '24px', margin: 0 }}>
-              3. Pipeline de Especificación Técnica: Antigravity & Stitch
+              3. Pipeline d'Especificació Tècnica: Antigravity & Stitch
             </h2>
             <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-              Separación tajante de backend algorítmico e interfaz limpia
+              Separació clara de backend algorítmic i interfície neta
             </span>
           </div>
         </div>
@@ -239,39 +239,39 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
           }}
         >
           <pre>{`+-----------------------------------------------------------------------------------+
-| PIPELINE DE ESPECIFICACIÓN TÉCNICA Y FLUJO DE DATOS                               |
+| PIPELINE D'ESPECIFICACIÓ TÈCNICA I FLUX DE DADES                                  |
 +-----------------------------------------------------------------------------------+
 | [ FRONTEND: STITCH ]                                                              |
-|   ├── Componente Temporizador (Selección Asignatura / Estado Bloqueo)              |
-|   ├── Dashboard Visual (Gráficos Subject Ratio / Mapa de Calor / D-Day)           |
-|   └── Feed Social Privado (Estado en tiempo real / Isla 3D compartida)           |
+|   ├── Component Temporitzador (Selecció Assignatura / Estat Bloqueig)              |
+|   ├── Tauler Visual (Gràfics Subject Ratio / Mapa de Calor / D-Day)               |
+|   └── Feed Social Privat (Estat en temps real / Illa 3D compartida)              |
 +-----------------------------------------------------------------------------------+
                                          │
                          (REST API / WebSockets JSON)
                                          ▼
 +-----------------------------------------------------------------------------------+
 | [ BACKEND: ANTIGRAVITY ]                                                          |
-|   ├── Processing Engine: Cómputo de Tiempos Netos e Intervalos                    |
-|   ├── Spaced Repetition Engine: Algoritmo SM-2 (Cálculo de EF e Intervalos)       |
-|   ├── Gamification Service: Conversión Tiempos -> Monedas / Crecimiento Jardín    |
-|   └── Social & Privacy Controller: Leaderboards Privados (Filtro Anti-Toxicidad) |
+|   ├── Processing Engine: Còmput de Temps Nets i Intervals                         |
+|   ├── Spaced Repetition Engine: Algorisme SM-2 (Càlcul d'EF i Intervals)          |
+|   ├── Gamification Service: Conversió Temps -> Monedes / Creixement Jardí         |
+|   └── Social & Privacy Controller: Leaderboards Privats (Filtre Anti-Toxicitat)   |
 +-----------------------------------------------------------------------------------+`}</pre>
         </div>
 
         <div style={{ fontSize: '15px', color: '#333344', lineHeight: 1.5 }}>
-          <strong>Lógica de Negocio y Reglas Críticas:</strong>
+          <strong>Lògica de Negoci i Regles Crítiques:</strong>
           <ul style={{ paddingLeft: '20px', marginTop: '6px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
             <li>
-              <strong>Tiempo Neto Activo:</strong> <code>T_neto = (end - start) - sum(pause_end - pause_start)</code>.
+              <strong>Temps Net Actiu:</strong> <code>T_net = (end - start) - sum(pause_end - pause_start)</code>.
             </li>
             <li>
-              <strong>Conversión Gamificada:</strong> 1 minuto de estudio enfocado = 1 Moneda Virtual.
+              <strong>Conversió Gamificada:</strong> 1 minut d'estudi enfocat = 1 Moneda Virtual.
             </li>
             <li>
               <strong>Fórmula SM-2:</strong> <code>EF' = max(1.3, EF + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)))</code>.
             </li>
             <li>
-              <strong>Protección Psicológica:</strong> Ránkings estrictamente privados (grupos de 6-8 amigos), vetando marcadores públicos globales para prevenir desmotivación y acoso escolar.
+              <strong>Protecció Psicològica:</strong> Rànquings estrictament privats (grups de 6-8 companys), vetant marcadors públics globals per a previndre desmotivació i assetjament escolar.
             </li>
           </ul>
         </div>
@@ -285,10 +285,10 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
           </div>
           <div>
             <h2 style={{ fontSize: '24px', margin: 0 }}>
-              4. Adaptaciones Específicas para Alumnos con TDAH / ADHD
+              4. Adaptacions Específiques per a Alumnes amb TDAH / ADHD
             </h2>
             <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-              Externalización de la estructura temporal y minimización del coste ejecutivo
+              Externalització de l'estructura temporal i minimització del cost executiu
             </span>
           </div>
         </div>
@@ -309,12 +309,12 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
             }}
           >
             <div style={{ fontSize: '16px', marginBottom: '6px' }}>
-              <strong>1. Disco Visual Decreciente (Time Timer)</strong>
+              <strong>1. Disc Visual Decreixent (Time Timer)</strong>
             </div>
             <div style={{ fontSize: '13px', color: '#555566', lineHeight: 1.4 }}>
-              Sustituye cifras numéricas regresivas (que generan ansiedad o ceguera temporal) por un
-              sector circular que se vacía suavemente. Permite percibir el paso del tiempo de forma visual
-              e intuitiva.
+              Substitueix xifres numèriques regressives (que generen ansietat o ceguesa temporal) per un
+              sector circular que es buida suaument. Permet percebre el pas del temps de forma visual
+              i intuïtiva.
             </div>
           </div>
 
@@ -327,12 +327,12 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
             }}
           >
             <div style={{ fontSize: '16px', marginBottom: '6px' }}>
-              <strong>2. Captura por Comandos de Voz</strong>
+              <strong>2. Captura per Comandaments de Veu</strong>
             </div>
             <div style={{ fontSize: '13px', color: '#555566', lineHeight: 1.4 }}>
-              La memoria de trabajo no retiene la apertura de apps manuales. El dictado inmediato a Siri o al
-              Asistente de Google elimina la barrera motriz y agenda recordatorios con hora exacta en la pantalla
-              de bloqueo.
+              La memòria de treball no reté l'obertura d'apps manuals. El dictat immediat a Siri o a
+              l'Assistent de Google elimina la barrera motriu i agenda recordatoris amb hora exacta a la pantalla
+              de bloqueig.
             </div>
           </div>
 
@@ -348,8 +348,8 @@ export const PedagogicalGuideModal: React.FC<PedagogicalGuideModalProps> = ({ on
               <strong>3. Sala Silenciosa de Body-Doubling</strong>
             </div>
             <div style={{ fontSize: '13px', color: '#555566', lineHeight: 1.4 }}>
-              Trabajar en paralelo y en silencio mientras se percibe la presencia activa de un compañero activa
-              las neuronas espejo, reduce la divagación atencional y neutraliza la parálisis de inicio.
+              Treballar en paral·lel i en silenci mentre es percep la presència activa d'un company activa
+              les neurones espill, redueix la divagació atencional i neutralitza la paràlisi d'inici.
             </div>
           </div>
         </div>

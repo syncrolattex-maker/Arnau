@@ -15,42 +15,42 @@ interface TestPreset {
 const PRESET_APPS: TestPreset[] = [
   {
     name: 'Notion',
-    category: 'Gestión / Notas',
+    category: 'Gestió / Notes',
     defaultAnswers: [false, true, true, false],
-    explanation: 'Trampa clásica de teatro de productividad: el alumno pasa horas diseñando bases de datos, iconos y plantillas sin fijar contenidos en la memoria de trabajo.',
+    explanation: 'Parany clàssic de teatre de productivitat: l\'alumne passa hores dissenyant bases de dades, icones i plantilles sense fixar continguts a la memòria de treball.',
   },
   {
-    name: 'Quizlet con IA',
-    category: 'Tarjetas de Memoria',
+    name: 'Quizlet amb IA',
+    category: 'Targetes de Memòria',
     defaultAnswers: [true, false, false, false],
-    explanation: 'Riesgo cognitivo severo: delegar la creación de tarjetas en la IA anula el 50% de la codificación activa primaria. Fichas pasivas y frágiles.',
+    explanation: 'Risc cognitiu sever: delegar la creació de targetes a la IA anul·la el 50% de la codificació activa primària. Fitxes passives i fràgils.',
   },
   {
-    name: 'GoodNotes (Método Cornell)',
-    category: 'Toma de Notas Manuscrita',
+    name: 'GoodNotes (Mètode Cornell)',
+    category: 'Presa de Notes Manuscrita',
     defaultAnswers: [true, true, false, true],
-    explanation: 'Herramienta aprobada: la grafomotricidad sobre lápiz digital preserva la retención neurológica y la estructura Cornell fuerza la síntesis activa.',
+    explanation: 'Eina aprovada: la grafomotricitat amb llapis digital preserva la retenció neurològica i l\'estructura Cornell força la síntesi activa.',
   },
   {
-    name: 'Anki (Algoritmo SM-2 Manual)',
-    category: 'Repetición Espaciada',
+    name: 'Anki (Algorisme SM-2 Manual)',
+    category: 'Repetició Espaiada',
     defaultAnswers: [true, true, false, true],
-    explanation: 'Herramienta de oro: respaldada por evidencia científica en recuperación activa. Sin florituras estéticas ni distracciones.',
+    explanation: 'Eina d\'or: recolzada per evidència científica en recuperació activa. Sense floritures estètiques ni distraccions.',
   },
   {
     name: 'Habitica',
-    category: 'Gamificación de Hábitos',
+    category: 'Gamificació d\'Hàbits',
     defaultAnswers: [false, false, true, false],
-    explanation: 'Teatro de productividad: el tiempo invertido en equipar avatares, mascotas y misiones supera ampliamente el tiempo de estudio real.',
+    explanation: 'Teatre de productivitat: el temps invertit a equipar avatars, mascotes i missions supera amb escreix el temps d\'estudi real.',
   },
 ];
 
 export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) => {
   const [appName, setAppName] = useState('Notion');
-  const [q1, setQ1] = useState<boolean>(false); // Used >= 3 times in 2 weeks for real task?
-  const [q2, setQ2] = useState<boolean>(true);  // Demands mental effort instead of thinking for you?
-  const [q3, setQ3] = useState<boolean>(true);  // Spend more time tweaking aesthetics than studying?
-  const [q4, setQ4] = useState<boolean>(false); // If uninstalled right now, would exam grades drop?
+  const [q1, setQ1] = useState<boolean>(false);
+  const [q2, setQ2] = useState<boolean>(true);
+  const [q3, setQ3] = useState<boolean>(true);
+  const [q4, setQ4] = useState<boolean>(false);
 
   const loadPreset = (preset: TestPreset) => {
     setAppName(preset.name);
@@ -61,12 +61,11 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
   };
 
   // Evaluation algorithm
-  // Healthy tool: Q1 = YES, Q2 = YES, Q3 = NO, Q4 = YES
   let score = 0;
   if (q1) score += 1;
-  if (q2) score += 2; // Critical cognitive preservation
-  if (!q3) score += 2; // Low friction / no productivity theater
-  if (q4) score += 1; // Real curriculum dependency
+  if (q2) score += 2;
+  if (!q3) score += 2;
+  if (q4) score += 1;
 
   const isSafe = score >= 5 && q2 && !q3;
   const isDangerous = q3 || !q2 || score <= 2;
@@ -81,22 +80,22 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
           style={{ padding: '8px 12px', fontSize: '15px' }}
         >
           <ArrowLeft size={16} />
-          <span>Volver al Dashboard</span>
+          <span>Tornar al Tauler</span>
         </button>
 
         <div className="tag-mono" style={{ backgroundColor: '#ffffff', border: '1px solid #111118' }}>
-          PROTOCOLO DE AUDITORÍA FRICCIONANTE DE 15 MINUTOS
+          PROTOCOL D'AUDITORIA FRICCIONANT DE 15 MINUTS
         </div>
       </div>
 
       {/* Hero Title */}
       <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
         <h1 style={{ fontSize: '42px', letterSpacing: '-1.5px', marginBottom: '8px' }}>
-          Auditoría de 4 Preguntas & Purgado Digital
+          Auditoria de 4 Preguntes & Purga Digital
         </h1>
         <p style={{ fontSize: '18px', color: '#555566' }}>
-          Evalúa cualquier aplicación educativa para erradicar el "teatro de productividad" y blindar
-          la regla de las <strong>Tres que se Quedan</strong>.
+          Avalua qualsevol aplicació educativa per a erradicar el "teatre de productivitat" i blindar
+          la regla de les <strong>Tres que es Queden</strong>.
         </p>
       </div>
 
@@ -114,7 +113,7 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <label className="font-mono" style={{ fontSize: '12px', color: '#555566' }}>
-            PRUEBA RÁPIDA DE APLICACIÓN:
+            PROVA RÀPIDA D'APLICACIÓ:
           </label>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {PRESET_APPS.map((p) => (
@@ -134,7 +133,7 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
               type="text"
               value={appName}
               onChange={(e) => setAppName(e.target.value)}
-              placeholder="O escribe el nombre de otra aplicación..."
+              placeholder="O escriu el nom d'una altra aplicació..."
               className="superhi-input"
               style={{ fontSize: '15px' }}
             />
@@ -158,8 +157,8 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
           >
             <div>
               <div style={{ fontSize: '15px', color: 'var(--color-ink-black)' }}>
-                <strong>1. Frecuencia real de uso:</strong> ¿Has abierto <em>{appName}</em> al menos 3
-                veces en las últimas dos semanas para completar una tarea real de clase?
+                <strong>1. Freqüència real d'ús:</strong> Has obert <em>{appName}</em> almenys 3
+                vegades en les últimes dues setmanes per a completar una tasca real de classe?
               </div>
             </div>
             <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
@@ -195,8 +194,8 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
           >
             <div>
               <div style={{ fontSize: '15px', color: 'var(--color-ink-black)' }}>
-                <strong>2. Esfuerzo cognitivo activo:</strong> ¿Esta herramienta te exige el esfuerzo
-                mental de resumir, sintetizar o memorizar, o está haciendo el trabajo de pensar por ti?
+                <strong>2. Esforç cognitiu actiu:</strong> Aquesta eina t'exigeix l'esforç
+                mental de resumir, sintetitzar o memoritzar, o està fent la faena de pensar per tu?
               </div>
             </div>
             <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
@@ -205,14 +204,14 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
                 className={`tag-pill ${q2 ? 'active' : ''}`}
                 style={{ cursor: 'pointer', padding: '6px 14px' }}
               >
-                Me exige pensar
+                M'exigeix pensar
               </button>
               <button
                 onClick={() => setQ2(false)}
                 className={`tag-pill ${!q2 ? 'active' : ''}`}
                 style={{ cursor: 'pointer', padding: '6px 14px' }}
               >
-                Piensa por mí
+                Pensa per mi
               </button>
             </div>
           </div>
@@ -232,8 +231,8 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
           >
             <div>
               <div style={{ fontSize: '15px', color: 'var(--color-ink-black)' }}>
-                <strong>3. Parálisis estética (Teatro de Productividad):</strong> ¿Inviertes más tiempo
-                configurando colores, fuentes, bases de datos o avatares que estudiando el temario?
+                <strong>3. Paràlisi estètica (Teatre de Productivitat):</strong> Inverteixes més temps
+                configurant colors, fonts, bases de dades o avatars que estudiant el temari?
               </div>
             </div>
             <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
@@ -242,14 +241,14 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
                 className={`tag-pill ${q3 ? 'active' : ''}`}
                 style={{ cursor: 'pointer', padding: '6px 14px' }}
               >
-                Sí, pierdo tiempo
+                Sí, perd temps
               </button>
               <button
                 onClick={() => setQ3(false)}
                 className={`tag-pill ${!q3 ? 'active' : ''}`}
                 style={{ cursor: 'pointer', padding: '6px 14px' }}
               >
-                No, voy al grano
+                No, vaig al gra
               </button>
             </div>
           </div>
@@ -269,9 +268,9 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
           >
             <div>
               <div style={{ fontSize: '15px', color: 'var(--color-ink-black)' }}>
-                <strong>4. Impacto académico real:</strong> Si desinstalas <em>{appName}</em> en este
-                preciso instante, ¿afectará negativamente a tu calificación en los exámenes de la próxima
-                semana?
+                <strong>4. Impacte acadèmic real:</strong> Si desinstal·les <em>{appName}</em> en aquest
+                precís instant, afectarà negativament la teua qualificació en els exàmens de la pròxima
+                setmana?
               </div>
             </div>
             <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
@@ -280,14 +279,14 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
                 className={`tag-pill ${q4 ? 'active' : ''}`}
                 style={{ cursor: 'pointer', padding: '6px 14px' }}
               >
-                Sí, me afectaría
+                Sí, m'afectaria
               </button>
               <button
                 onClick={() => setQ4(false)}
                 className={`tag-pill ${!q4 ? 'active' : ''}`}
                 style={{ cursor: 'pointer', padding: '6px 14px' }}
               >
-                No me afectaría
+                No m'afectaria
               </button>
             </div>
           </div>
@@ -320,21 +319,21 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
                 color: isSafe ? '#16ab59' : '#ff4141',
               }}
             >
-              DICTAMEN DE LA AUDITORÍA ({score}/6 PUNTOS):
+              DICTAMEN DE L'AUDITORIA ({score}/6 PUNTS):
             </div>
             <div style={{ fontSize: '18px', color: 'var(--color-ink-black)' }}>
               {isSafe ? (
-                <strong>✅ APROBADA: Pertenece a las "Tres que se Quedan"</strong>
+                <strong>✅ APROVADA: Pertany a les "Tres que es Queden"</strong>
               ) : isDangerous ? (
-                <strong>❌ DESINSTALAR INMEDIATAMENTE (Teatro de Productividad)</strong>
+                <strong>❌ DESINSTAL·LAR IMMEDIATAMENT (Teatre de Productivitat)</strong>
               ) : (
-                <strong>⚠️ EN OBSERVACIÓN: Reducir configuración estética</strong>
+                <strong>⚠️ EN OBSERVACIÓ: Reduir configuració estètica</strong>
               )}
             </div>
             <div style={{ fontSize: '14px', color: '#555566', marginTop: '4px', lineHeight: 1.4 }}>
               {isSafe
-                ? `${appName} fomenta la codificación activa o reduce la fricción sin atrapar la atención del alumno en distracciones secundarias.`
-                : `${appName} introduce sobrecarga en la memoria de trabajo y fomenta la falsa ilusión de productividad. Desinstalarla despeja la atención para 2º de la ESO.`}
+                ? `${appName} fomenta la codificació activa o redueix la fricció sense atrapar l'atenció de l'alumne en distraccions secundàries.`
+                : `${appName} introdueix sobrecàrrega a la memòria de treball i fomenta la falsa il·lusió de productivitat. Desinstal·lar-la aclareix l'atenció per a 2n d'ESO.`}
             </div>
           </div>
         </div>
@@ -349,7 +348,7 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
         }}
       >
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>
-          Protocolo de Revisión Continua del Sistema (Cada 6 Semanas)
+          Protocol de Revisió Contínua del Sistema (Cada 6 Setmanes)
         </h2>
 
         <div
@@ -362,23 +361,23 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
           {[
             {
               num: '1',
-              title: 'Auditoría de Tiempo de Pantalla',
-              desc: 'Revisar informe de Tiempo de Uso (iOS) o Bienestar Digital (Android) para identificar apps de alta permanencia y nulo valor pedagógico.',
+              title: 'Auditoria de Temps de Pantalla',
+              desc: 'Revisar informe de Temps d\'Ús (iOS) o Benestar Digital (Android) per a identificar apps d\'alta permanència i nul valor pedagògic.',
             },
             {
               num: '2',
-              title: 'Regla de las "Tres que se Quedan"',
-              desc: 'Desinstalar software secundario hasta dejar solo 1 de enfoque (YPT/Forest), 1 de notas/recuperación (GoodNotes/Anki) y 1 de planificación.',
+              title: 'Regla de les "Tres que es Queden"',
+              desc: 'Desinstal·lar programari secundari fins a deixar només 1 d\'enfocament (YPT/Forest), 1 de notes/recuperació (GoodNotes/Anki) i 1 de planificació.',
             },
             {
               num: '3',
-              title: 'Purgado de Accesos Directos',
-              desc: 'Eliminar de la pantalla de inicio cualquier icono de app no abierta en más de 14 días. Mantener la pantalla limpia de estímulos.',
+              title: 'Purga d\'Accessos Directes',
+              desc: 'Eliminar de la pantalla d\'inici qualsevol icona d\'app no oberta en més de 14 dies. Mantindre la pantalla neta d\'estímuls.',
             },
             {
               num: '4',
-              title: 'Verificación de Límites del SO',
-              desc: 'Comprobar que el límite de 1 minuto para redes sociales en Ajustes permanezca protegido con código confidencial de padres o tutores.',
+              title: 'Verificació de Límits del SO',
+              desc: 'Comprovar que el límit d\'1 minut per a xarxes socials en Paràmetres romanga protegit amb codi confidencial de pares o tutors.',
             },
           ].map((step) => (
             <div key={step.num} className="superhi-card" style={{ padding: '16px' }}>
@@ -390,7 +389,7 @@ export const AuditWizardModal: React.FC<AuditWizardModalProps> = ({ onBack }) =>
                   marginBottom: '6px',
                 }}
               >
-                Paso 0{step.num}
+                Pas 0{step.num}
               </div>
               <div style={{ fontSize: '16px', marginBottom: '6px' }}>
                 <strong>{step.title}</strong>

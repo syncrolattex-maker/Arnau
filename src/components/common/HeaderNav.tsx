@@ -1,12 +1,13 @@
 import React from 'react';
-import { Sparkles, BarChart2, ShieldCheck, BookOpen, Clock } from 'lucide-react';
+import { Sparkles, BarChart2, ShieldCheck, BookOpen, Clock, Bell } from 'lucide-react';
 
 interface HeaderNavProps {
-  currentView: 'dashboard' | 'metrics' | 'audit' | 'guide';
-  onViewChange: (view: 'dashboard' | 'metrics' | 'audit' | 'guide') => void;
+  currentView: 'dashboard' | 'topics' | 'metrics' | 'audit' | 'guide';
+  onViewChange: (view: 'dashboard' | 'topics' | 'metrics' | 'audit' | 'guide') => void;
   coins: number;
   adhdMode: boolean;
   onToggleAdhdMode: () => void;
+  onOpenAnnouncements?: () => void;
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({
@@ -15,6 +16,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   coins,
   adhdMode,
   onToggleAdhdMode,
+  onOpenAnnouncements,
 }) => {
   return (
     <header className="nav-bar">
@@ -50,7 +52,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 letterSpacing: '-0.4px',
               }}
             >
-              Orbital 2º ESO
+              Orbital 2n d'ESO
             </div>
             <div
               className="font-mono"
@@ -60,7 +62,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 letterSpacing: '-0.1px',
               }}
             >
-              Arquitectura Digital Libre de Fricción
+              Arquitectura Digital Lliure de Fricció
             </div>
           </div>
         </div>
@@ -83,7 +85,20 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             }}
           >
             <Clock size={16} />
-            <span>Dashboard</span>
+            <span>Tauler</span>
+          </button>
+
+          <button
+            onClick={() => onViewChange('topics')}
+            className={`tag-pill ${currentView === 'topics' ? 'active' : ''}`}
+            style={{
+              cursor: 'pointer',
+              fontSize: '15px',
+              padding: '8px 16px',
+            }}
+          >
+            <BookOpen size={16} />
+            <span>Temes & Llibres</span>
           </button>
 
           <button
@@ -109,7 +124,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             }}
           >
             <ShieldCheck size={16} />
-            <span>Auditoría 4 Preguntas</span>
+            <span>Auditoria 4 Preguntes</span>
           </button>
 
           <button
@@ -122,8 +137,27 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             }}
           >
             <BookOpen size={16} />
-            <span>Marco Pedagógico</span>
+            <span>Marc Pedagògic</span>
           </button>
+
+          {onOpenAnnouncements && (
+            <button
+              onClick={onOpenAnnouncements}
+              className="tag-pill"
+              style={{
+                cursor: 'pointer',
+                fontSize: '15px',
+                padding: '8px 16px',
+                backgroundColor: '#fff1f2',
+                color: '#e11d48',
+                borderColor: '#fecdd3',
+              }}
+              title="Avisos i comunicats recents del professorat a Aules"
+            >
+              <Bell size={16} />
+              <span>Avisos Aules</span>
+            </button>
+          )}
         </nav>
 
         {/* Right: Coins + ADHD Disc Toggle */}
@@ -131,7 +165,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           {/* TDAH / ADHD Mode Switcher */}
           <button
             onClick={onToggleAdhdMode}
-            title="Alternar modo de disco visual analógico decreciente (Time Timer) para TDAH"
+            title="Commutar mode de disc visual analògic decreixent (Time Timer) per a TDAH"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -150,7 +184,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           >
             <span style={{ fontSize: '15px' }}>⏱️</span>
             <span style={{ fontSize: '13px' }}>
-              Modo TDAH: {adhdMode ? 'ACTIVO' : 'Estándar'}
+              Mode TDAH: {adhdMode ? 'ACTIU' : 'Estàndard'}
             </span>
           </button>
 
@@ -167,7 +201,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             }}
           >
             <span style={{ fontSize: '15px' }}>🪙</span>
-            <span>{coins} Monedas</span>
+            <span>{coins} Monedes</span>
           </div>
         </div>
       </div>

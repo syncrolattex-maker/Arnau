@@ -9,11 +9,17 @@ import { SocialIslandQuadrant } from './components/dashboard/SocialIslandQuadran
 import { AnalyticsModal } from './components/analytics/AnalyticsModal';
 import { AuditWizardModal } from './components/audit/AuditWizardModal';
 import { PedagogicalGuideModal } from './components/guide/PedagogicalGuideModal';
+import { AulesSyncModal } from './components/aules/AulesSyncModal';
+import { AulesQuizImporterModal } from './components/aules/AulesQuizImporterModal';
+import { AulesAnnouncementsModal } from './components/aules/AulesAnnouncementsModal';
+
+import { TopicsCurriculumView } from './components/curriculum/TopicsCurriculumView';
 
 import {
   getStoredTasks,
   saveStoredTasks,
   getStoredExams,
+  saveStoredExams,
   getStoredFlashcards,
   saveStoredFlashcards,
   getStoredCoins,
@@ -23,6 +29,7 @@ import {
   getStoredFriends,
   getStoredIsland,
   saveStoredIsland,
+  getStoredSubjects,
 } from './utils/storage';
 
 import type {
@@ -37,16 +44,19 @@ import type {
 import { ShieldCheck } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'metrics' | 'audit' | 'guide'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'topics' | 'metrics' | 'audit' | 'guide'>('dashboard');
   const [adhdMode, setAdhdMode] = useState<boolean>(false);
   const [coins, setCoins] = useState<number>(getStoredCoins());
   const [tasks, setTasks] = useState<DailyTask[]>(getStoredTasks());
-  const [exams] = useState<ExamCountdown[]>(getStoredExams());
+  const [exams, setExams] = useState<ExamCountdown[]>(getStoredExams());
   const [flashcards, setFlashcards] = useState<Flashcard[]>(getStoredFlashcards());
   const [sessions, setSessions] = useState<StudySessionRecord[]>(getStoredSessions());
   const [friends] = useState<FriendPresence[]>(getStoredFriends());
   const [island, setIsland] = useState<SharedIsland>(getStoredIsland());
   const [showCookieBar, setShowCookieBar] = useState<boolean>(true);
+  const [showAulesSync, setShowAulesSync] = useState<boolean>(false);
+  const [showAulesQuiz, setShowAulesQuiz] = useState<boolean>(false);
+  const [showAulesAnnouncements, setShowAulesAnnouncements] = useState<boolean>(false);
 
   // Persistence effects
   useEffect(() => {
@@ -56,6 +66,10 @@ export function App() {
   useEffect(() => {
     saveStoredTasks(tasks);
   }, [tasks]);
+
+  useEffect(() => {
+    saveStoredExams(exams);
+  }, [exams]);
 
   useEffect(() => {
     saveStoredFlashcards(flashcards);
@@ -105,6 +119,20 @@ export function App() {
     setTasks((prev) => [...prev, task]);
   };
 
+  const handleSyncExamsAndTasks = (newExams: ExamCountdown[], newTasks: DailyTask[]) => {
+    if (newExams.length > 0) {
+      setExams(newExams);
+    }
+    if (newTasks.length > 0) {
+      // Merge unique tasks up to 5
+      setTasks((prev) => {
+        const combined = [...prev, ...newTasks];
+        const unique = Array.from(new Map(combined.map((item) => [item.title, item])).values());
+        return unique.slice(0, 5);
+      });
+    }
+  };
+
   const handleUpdateFlashcard = (updated: Flashcard) => {
     setFlashcards((prev) =>
       prev.map((c) => (c.id === updated.id ? updated : c))
@@ -126,6 +154,7 @@ export function App() {
         coins={coins}
         adhdMode={adhdMode}
         onToggleAdhdMode={() => setAdhdMode(!adhdMode)}
+        onOpenAnnouncements={() => setShowAulesAnnouncements(true)}
       />
 
       {/* Main Content Area */}
@@ -163,9 +192,9 @@ export function App() {
                     margin: 0,
                   }}
                 >
-                  Aprende sin dispersión.
+                  Aprèn sense dispersió.
                   <br />
-                  Foco puro para 2º de la ESO.
+                  Foc pur per a 2n d'ESO.
                 </h1>
 
                 {/* Subhead in Haas Grot Text 20px #111118 */}
@@ -177,9 +206,9 @@ export function App() {
                     maxWidth: '680px',
                   }}
                 >
-                  Infraestructura digital austera y libre de distracciones. Cero teatro de productividad:
-                  inicia tu sesión en menos de 5 segundos, protege tu atención y consolida tu memoria
-                  con evidencia científica.
+                  Infraestructura digital austera i lliure de distraccions. Zero teatre de productivitat:
+                  inicia la teua sessió en menys de 5 segons, protegeix la teua atenció i consolida la memòria
+                  amb evidència científica.
                 </p>
 
                 {/* Two Pill Buttons Side by Side with 16px gap */}
@@ -197,7 +226,7 @@ export function App() {
                     href="#dashboard-workspace"
                     className="btn-primary"
                   >
-                    <span>Empezar a Estudiar Ahora →</span>
+                    <span>Comença a Estudiar Ara →</span>
                   </a>
 
                   <button
@@ -205,7 +234,7 @@ export function App() {
                     className="btn-dark"
                   >
                     <ShieldCheck size={18} />
-                    <span>Auditar Mis Apps</span>
+                    <span>Auditar les Meues Apps</span>
                   </button>
                 </div>
               </div>
@@ -221,10 +250,10 @@ export function App() {
                 >
                   <div>
                     <h2 style={{ fontSize: '26px', margin: 0 }}>
-                      Entorno Operativo del Estudiante
+                      Entorn Operatiu de l'Alumne
                     </h2>
                     <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-                      ARQUITECTURA DE 4 CUADRANTES INTEGRADA
+                      ARQUITECTURA DE 4 QUADRANTS INTEGRADA
                     </span>
                   </div>
 
@@ -234,7 +263,7 @@ export function App() {
                       className="tag-pill"
                       style={{ cursor: 'pointer', fontSize: '13px' }}
                     >
-                      📊 Ver Métricas 29 Días
+                      📊 Veure Mètriques 29 Dies
                     </button>
                   </div>
                 </div>
@@ -253,6 +282,7 @@ export function App() {
                     exams={exams}
                     onToggleTask={handleToggleTask}
                     onAddTask={handleAddTask}
+                    onOpenAulesSync={() => setShowAulesSync(true)}
                   />
 
                   {/* Quadrant 3 (Bottom-Left): Memorization & SM-2 Flashcards */}
@@ -260,6 +290,7 @@ export function App() {
                     flashcards={flashcards}
                     onUpdateFlashcard={handleUpdateFlashcard}
                     onCoinsEarned={handleCoinsEarned}
+                    onOpenAulesImport={() => setShowAulesQuiz(true)}
                   />
 
                   {/* Quadrant 4 (Bottom-Right): Peer Motivation & Shared Island */}
@@ -287,14 +318,14 @@ export function App() {
               >
                 <div style={{ maxWidth: '640px' }}>
                   <div className="tag-mono" style={{ backgroundColor: '#ffffff', marginBottom: '8px' }}>
-                    REGLA DE CONSOLIDACIÓN ESTRICTA
+                    REGLA DE CONSOLIDACIÓ ESTRICTA
                   </div>
                   <h2 style={{ fontSize: '32px', letterSpacing: '-0.5px', marginBottom: '8px' }}>
-                    ¿Atrapado en el "Teatro de Productividad"?
+                    Atrapat en el "Teatre de Productivitat"?
                   </h2>
                   <p style={{ fontSize: '17px', color: '#222233', lineHeight: 1.4 }}>
-                    Tener 14 aplicaciones de estudio solo desgasta tu memoria de trabajo. Quédate con las 3
-                    herramientas que verdaderamente exigen esfuerzo cognitivo activo.
+                    Tindre 14 aplicacions d'estudi només desgasta la teua memòria de treball. Queda't amb les 3
+                    eines que veritablement exigeixen esforç cognitiu actiu.
                   </p>
                 </div>
 
@@ -304,11 +335,28 @@ export function App() {
                     className="btn-primary"
                     style={{ fontSize: '18px' }}
                   >
-                    <span>Leer Marco Pedagógico →</span>
+                    <span>Llegir Marc Pedagògic →</span>
                   </button>
                 </div>
               </section>
             </div>
+          )}
+
+          {/* VIEW: TOPICS & CURRICULUM */}
+          {currentView === 'topics' && (
+            <TopicsCurriculumView
+              subjects={getStoredSubjects()}
+              onBack={() => setCurrentView('dashboard')}
+              onStartStudyWithTopic={(subjectId, topicTitle) => {
+                // Return to dashboard and prep topic
+                setCurrentView('dashboard');
+                // Scroll smoothly to timer
+                setTimeout(() => {
+                  const el = document.getElementById('dashboard-workspace');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+            />
           )}
 
           {/* VIEW: METRICS & SUBJECT RATIO */}
@@ -332,6 +380,26 @@ export function App() {
               onBack={() => setCurrentView('dashboard')}
             />
           )}
+
+          {/* MODAL: AULES GVA SYNC */}
+          <AulesSyncModal
+            isOpen={showAulesSync}
+            onClose={() => setShowAulesSync(false)}
+            onSyncExamsAndTasks={handleSyncExamsAndTasks}
+          />
+
+          {/* MODAL: AULES QUIZ / FLASHCARDS IMPORTER */}
+          <AulesQuizImporterModal
+            isOpen={showAulesQuiz}
+            onClose={() => setShowAulesQuiz(false)}
+            onImportFlashcards={(newCards) => setFlashcards((prev) => [...prev, ...newCards])}
+          />
+
+          {/* MODAL: AULES ANNOUNCEMENTS & RSS */}
+          <AulesAnnouncementsModal
+            isOpen={showAulesAnnouncements}
+            onClose={() => setShowAulesAnnouncements(false)}
+          />
         </div>
       </main>
 
@@ -339,7 +407,7 @@ export function App() {
       {showCookieBar && (
         <aside
           role="dialog"
-          aria-label="Consentimiento de privacidad"
+          aria-label="Consentiment de privacitat"
           style={{
             position: 'fixed',
             bottom: 0,
@@ -357,8 +425,8 @@ export function App() {
           }}
         >
           <div style={{ fontSize: '15px', color: '#ffffff', maxWidth: '750px', lineHeight: 1.4 }}>
-            Este entorno digital utiliza almacenamiento local privado para calcular tus métricas SM-2 y tiempos
-            de estudio. No compartimos datos con redes de publicidad ni clasificadores públicos.
+            Aquest entorn digital utilitza emmagatzematge local privat per a calcular les teues mètriques SM-2 i temps
+            d'estudi. No compartim dades amb xarxes de publicitat ni classificadors públics.
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -375,7 +443,7 @@ export function App() {
                 fontFamily: 'var(--font-haas-grot-text)',
               }}
             >
-              Solo esenciales
+              Només essencials
             </button>
 
             <button
@@ -392,7 +460,7 @@ export function App() {
                 boxShadow: '0 2px 0 0 #2727e6',
               }}
             >
-              Entendido
+              Entés
             </button>
           </div>
         </aside>

@@ -108,22 +108,22 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
           style={{ padding: '8px 12px', fontSize: '15px' }}
         >
           <ArrowLeft size={16} />
-          <span>Volver al Dashboard</span>
+          <span>Tornar al Tauler</span>
         </button>
 
         <div className="tag-mono" style={{ backgroundColor: '#ffffff', border: '1px solid #111118' }}>
-          VENTANA DESLIZANTE DE 29 DÍAS (ANTIGRAVITY ENGINE)
+          FINESTRA LLISCANT DE 29 DIES (ANTIGRAVITY ENGINE)
         </div>
       </div>
 
       {/* Hero Title Block */}
       <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
         <h1 style={{ fontSize: '42px', letterSpacing: '-1.5px', marginBottom: '8px' }}>
-          Distribución por Materia & Subject Ratio
+          Distribució per Matèria & Subject Ratio
         </h1>
         <p style={{ fontSize: '18px', color: '#555566' }}>
-          Monitoreo analítico del tiempo de estudio neto (T<sub>neto</sub>). Detección preventiva de
-          materias desatendidas (&lt; 10%) para equilibrar el salto curricular de 2º de la ESO.
+          Monitoratge analític del temps d'estudi net (T<sub>net</sub>). Detecció preventiva de
+          matèries desateses (&lt; 10%) per a equilibrar el salt curricular de 2n d'ESO.
         </p>
       </div>
 
@@ -145,10 +145,10 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
           <AlertCircle size={24} color="#ff4141" style={{ flexShrink: 0 }} />
           <div>
             <div style={{ fontSize: '16px', color: '#111118' }}>
-              <strong>¡Alerta de Desequilibrio de Estudio!</strong>
+              <strong>¡Alerta de Desequilibri d'Estudi!</strong>
             </div>
             <div style={{ fontSize: '14px', color: '#555566' }}>
-              Las siguientes asignaturas representan menos del 10% del tiempo acumulado:{' '}
+              Les següents assignatures representen menys del 10% del temps acumulat:{' '}
               {neglectedSubjects.map((s) => (
                 <span
                   key={s.id}
@@ -161,7 +161,7 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
                   {s.name} ({s.percentage}%)
                 </span>
               ))}
-              — Reasigna un bloque de estudio prioritario hoy.
+              — Reassigna un bloc d'estudi prioritari hui.
             </div>
           </div>
         </div>
@@ -182,9 +182,9 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
               <PieIcon size={18} />
             </div>
             <div>
-              <h2 style={{ fontSize: '20px', margin: 0 }}>Subject Ratio Acumulado</h2>
+              <h2 style={{ fontSize: '20px', margin: 0 }}>Subject Ratio Acumulat</h2>
               <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-                Total: {Math.round(grandTotalMinutes / 60)}h {grandTotalMinutes % 60}m netos
+                Total: {Math.round(grandTotalMinutes / 60)}h {grandTotalMinutes % 60}m nets
               </span>
             </div>
           </div>
@@ -232,7 +232,7 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
               >
                 {grandTotalMinutes}m
               </div>
-              <div style={{ fontSize: '11px', color: '#888899' }}>29 Días</div>
+              <div style={{ fontSize: '11px', color: '#888899' }}>29 Dies</div>
             </div>
           </div>
 
@@ -290,9 +290,9 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
               <Calendar size={18} />
             </div>
             <div>
-              <h2 style={{ fontSize: '20px', margin: 0 }}>Mapa de Calor de Constancia</h2>
+              <h2 style={{ fontSize: '20px', margin: 0 }}>Mapa de Calor de Constància</h2>
               <span className="font-mono" style={{ fontSize: '12px', color: '#6e6e80' }}>
-                4 Niveles de saturación mensual
+                4 Nivells de saturació mensual
               </span>
             </div>
           </div>
@@ -310,7 +310,7 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
                 border: '1px solid var(--color-frost-blue)',
               }}
             >
-              {['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((d, i) => (
+              {['Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'].map((d, i) => (
                 <div
                   key={i}
                   className="font-mono"
@@ -328,7 +328,7 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
               {heatmapDays.map((d) => (
                 <div
                   key={d.dayNum}
-                  title={`Día ${d.dayNum}: Nivel de intensidad ${d.level}`}
+                  title={`Dia ${d.dayNum}: Nivell d'intensitat ${d.level}`}
                   style={{
                     aspectRatio: '1',
                     borderRadius: '6px',
@@ -357,7 +357,7 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
                 padding: '0 8px',
               }}
             >
-              <span style={{ fontSize: '12px', color: '#6e6e80' }}>Menos horas</span>
+              <span style={{ fontSize: '12px', color: '#6e6e80' }}>Menys hores</span>
               <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
                 {[0, 1, 2, 3, 4].map((lvl) => (
                   <div
@@ -371,7 +371,7 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
                   />
                 ))}
               </div>
-              <span style={{ fontSize: '12px', color: '#6e6e80' }}>Más de 2.5h</span>
+              <span style={{ fontSize: '12px', color: '#6e6e80' }}>Més de 2.5h</span>
             </div>
           </div>
 
@@ -388,9 +388,9 @@ export const AnalyticsModal: React.FC<AnalyticsModalProps> = ({
               marginTop: 'auto',
             }}
           >
-            <strong>Consistencia vs Sobreesfuerzo:</strong> El cerebro del adolescente consolida la
-            memoria a largo plazo mediante sesiones diarias de 45 a 90 minutos distribuidas, evitando
-            los atracones de última hora antes de los exámenes.
+            <strong>Consistència vs Sobreesforç:</strong> El cervell adolescent consolida la
+            memòria a llarg termini mitjançant sessions diàries de 45 a 90 minuts distribuïdes, evitant
+            els atracons d'última hora abans dels exàmens.
           </div>
         </div>
       </div>

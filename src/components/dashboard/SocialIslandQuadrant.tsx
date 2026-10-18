@@ -31,7 +31,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
             }}
           />
           <h2 style={{ fontSize: '22px', margin: 0 }}>
-            4. Isla Compartida & Amigos
+            4. Illa Compartida & Companys
           </h2>
         </div>
 
@@ -43,7 +43,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
             style={{ cursor: 'pointer', fontSize: '13px', padding: '4px 10px' }}
           >
             <Trees size={14} />
-            <span>Isla 3D</span>
+            <span>Illa 3D</span>
           </button>
           <button
             onClick={() => setActiveTab('leaderboard')}
@@ -51,7 +51,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
             style={{ cursor: 'pointer', fontSize: '13px', padding: '4px 10px' }}
           >
             <Users size={14} />
-            <span>Círculo Privado</span>
+            <span>Cercle Privat</span>
           </button>
         </div>
       </div>
@@ -101,7 +101,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
                 fontFamily: 'var(--font-martian-mono)',
               }}
             >
-              ☁️ Isla Comunitaria Nivel {island.level}
+              ☁️ Illa Comunitària Nivell {island.level}
             </div>
 
             {/* Stylized Island Ground */}
@@ -161,7 +161,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
             >
               <span>🌱 <strong>{island.name}</strong></span>
               <span>•</span>
-              <span className="font-mono">Racha: {island.streakDays} días</span>
+              <span className="font-mono">Ratxa: {island.streakDays} dies</span>
             </div>
           </div>
 
@@ -176,7 +176,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
               }}
             >
               <span className="font-mono" style={{ color: '#555566' }}>
-                PROGRESO COLECTIVO DE HOY:
+                PROGRÉS COL·LECTIU DE HUI:
               </span>
               <span className="font-mono" style={{ color: 'var(--color-ink-black)' }}>
                 {island.collectiveMinutesToday} / 300 min ({levelProgress}%)
@@ -220,12 +220,12 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
               />
               <div>
                 <div style={{ fontSize: '13px', lineHeight: 1.2 }}>
-                  <strong>Doble Cuerpo Virtual (Body-Doubling)</strong>
+                  <strong>Doble Cos Virtual (Body-Doubling)</strong>
                 </div>
                 <div style={{ fontSize: '11px', color: '#6e6e80' }}>
                   {bodyDoublingActive
-                    ? '3 compañeros en sala silenciosa activa neuronas espejo'
-                    : 'Estudio en silencio sincronizado (estrategia TDAH)'}
+                    ? '3 companys en sala silenciosa activa neurones espill'
+                    : 'Estudi en silenci sincronitzat (estratègia TDAH)'}
                 </div>
               </div>
             </div>
@@ -239,7 +239,7 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
                 backgroundColor: bodyDoublingActive ? '#16ab59' : 'var(--color-electric-iris)',
               }}
             >
-              {bodyDoublingActive ? 'Conectado ✓' : 'Unirme'}
+              {bodyDoublingActive ? 'Connectat ✓' : 'Unir-me'}
             </button>
           </div>
         </div>
@@ -262,8 +262,8 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
           >
             <ShieldCheck size={14} />
             <span>
-              <strong>Grupo Cerrado Seguro:</strong> Máximo 6 amigos. Sin ránkings públicos para
-              prevenir toxicidad o desmotivación.
+              <strong>Grup Tancat Segur:</strong> Màxim 6 companys. Sense rànquings públics per a
+              previndre toxicitat o desmotivació.
             </span>
           </div>
 
@@ -306,10 +306,10 @@ export const SocialIslandQuadrant: React.FC<SocialIslandQuadrantProps> = ({
                     <div style={{ fontSize: '11px', color: '#6e6e80' }}>
                       {friend.isLive ? (
                         <span style={{ color: '#16ab59' }}>
-                          🟢 Estudiando {friend.currentSubject} ({friend.currentSessionMinutes}m)
+                          🟢 Estudiant {friend.currentSubject} ({friend.currentSessionMinutes}m)
                         </span>
                       ) : (
-                        <span>Desconectado</span>
+                        <span>Desconnectat</span>
                       )}
                     </div>
                   </div>
